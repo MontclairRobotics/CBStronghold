@@ -12,6 +12,7 @@ import org.montclairrobotics.cyborg.devices.CBAxis;
 import org.montclairrobotics.cyborg.devices.CBButton;
 import org.montclairrobotics.cyborg.devices.CBContourReport;
 import org.montclairrobotics.cyborg.devices.CBDashboardChooser;
+import org.montclairrobotics.cyborg.devices.CBDeviceEnum;
 import org.montclairrobotics.cyborg.devices.CBDeviceId;
 import org.montclairrobotics.cyborg.devices.CBEncoder;
 import org.montclairrobotics.cyborg.devices.CBTalon;
@@ -58,6 +59,21 @@ public class SHRobot extends Cyborg {
 			;
 	}
 	private SHDevices devices = new SHDevices();
+	
+	enum Devs implements CBDeviceEnum {
+		armMainValve, armHalfValve, shooterValve, 
+		shooterLeftMotor, shooterRightMotor,
+		driveMotorLeft1, driveMotorLeft2,
+		driveMotorRight1, driveMotorRight2,		
+		driveEncoderLeft, driveEncoderRight,
+		forwardAxis, rotationAxis,
+		//forward2Axis, 
+		shootButton, armUpButton, armMidButton, armDownButton,
+		gyroLockButton, autoSteerButton,
+		spinPov,
+		autoSelect,autoPosition,
+		visionPipeline,
+	}
 
 	@Override
 	public void cyborgInit() {
@@ -197,7 +213,7 @@ public class SHRobot extends Cyborg {
 				new SHSensorMapper(this)
 				.setAutoChooser(devices.autoSelect)
 				.setContourRpt(devices.visionPipeline)
-				.setGyroLockSource(devices.navx)
+				.setGyroLockSource(new CBNavX(SPI.Port.kMXP))
 				.setDriveEncoders(devices.driveEncoderLeft, devices.driveEncoderRight)
 				);
 

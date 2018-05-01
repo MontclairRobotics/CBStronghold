@@ -6,6 +6,7 @@ import org.montclairrobotics.cyborg.devices.CBContourReport;
 import org.montclairrobotics.cyborg.devices.CBDashboardChooser;
 import org.montclairrobotics.cyborg.devices.CBDeviceId;
 import org.montclairrobotics.cyborg.devices.CBEncoder;
+import org.montclairrobotics.cyborg.devices.CBNavX;
 import org.montclairrobotics.cyborg.devices.CBNavXYawSource;
 import org.montclairrobotics.cyborg.mappers.CBCustomMapper;
 
@@ -51,8 +52,8 @@ public class SHSensorMapper extends CBCustomMapper {
 		}
 	}
 
-	public SHSensorMapper setGyroLockSource(CBDeviceId navxId) {
-		navxYawSource = new CBNavXYawSource(navxId); 
+	public SHSensorMapper setGyroLockSource(CBNavX navx) {
+		navxYawSource = new CBNavXYawSource(navx); 
 		return this;
 	}
 
